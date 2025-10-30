@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SATURO - Donde el alma respira</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+            color: #2c3e2c;
+            background-color: #f9f7f4;
+        }
+
+        header {
+            background: linear-gradient(135deg, #2d5016 0%, #4a7c2c 100%);
+            color: white;
+            padding: 2rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+
+        .tagline {
+            font-size: 0.9rem;
+            font-style: italic;
+            opacity: 0.9;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.3s;
+            font-size: 0.95rem;
+        }
+
+        nav a:hover {
+            opacity: 0.7;
+        }
+
+        .hero {
+            height: 85vh;
+            background: linear-gradient(rgba(45, 80, 22, 0.3), rgba(45, 80, 22, 0.5)),
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%234a7c2c" width="1200" height="600"/><path fill="%233d6625" d="M0 400 Q300 350 600 400 T1200 400 L1200 600 L0 600 Z"/><circle fill="%235a8c3c" cx="200" cy="150" r="80" opacity="0.3"/><circle fill="%235a8c3c" cx="900" cy="200" r="100" opacity="0.3"/></svg>') center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero-content p {
+            font-size: 1.5rem;
+            font-style: italic;
+            margin-bottom: 2rem;
+        }
+
+        .cta-button {
+            background-color: #f0ad4e;
+            color: white;
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .cta-button:hover {
+            background-color: #ec971f;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            color: #2d5016;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            margin-top: 2rem;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .mission-vision {
+            background-color: #e8f5e0;
+            padding: 2rem;
+            border-radius: 15px;
+            border-left: 5px solid #4a7c2c;
+        }
+
+        .mission-vision h3 {
+            color: #2d5016;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .planes {
+            background-color: #f0f8ec;
+        }
+
+        .planes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .plan-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .plan-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .plan-card h3 {
+            color: #4a7c2c;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .plan-card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .plan-card li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .plan-card li:before {
+            content: "🍃";
+            position: absolute;
+            left: 0;
+        }
+
+        .valores-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .valor-card {
+            text-align: center;
+            padding: 2rem;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        .valor-card h3 {
+            color: #4a7c2c;
+            margin: 1rem 0;
+            font-size: 1.3rem;
+        }
+
+        .valor-icon {
+            font-size: 3rem;
+        }
+
+        .diferenciadores {
+            background-color: #e8f5e0;
+        }
+
+        .diferenciadores-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .diferenciador-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            border-left: 4px solid #f0ad4e;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .diferenciador-item h4 {
+            color: #2d5016;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .contacto {
+            text-align: center;
+            background: linear-gradient(135deg, #2d5016 0%, #4a7c2c 100%);
+            color: white;
+        }
+
+        .qr-container {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin: 3rem 0;
+            flex-wrap: wrap;
+        }
+
+        .qr-item {
+            text-align: center;
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .qr-item h3 {
+            color: #2d5016;
+            margin-bottom: 1rem;
+        }
+
+        .qr-code {
+            width: 200px;
+            height: 200px;
+            background: white;
+            border: 2px solid #4a7c2c;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+        }
+
+        .telefono {
+            font-size: 1.5rem;
+            margin-top: 2rem;
+            color: #f0ad4e;
+        }
+
+        .comentarios {
+            background-color: #f9f7f4;
+        }
+
+        .comentarios-form {
+            max-width: 600px;
+            margin: 2rem auto;
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #2d5016;
+            font-weight: bold;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 1rem;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #4a7c2c;
+        }
+
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .comentarios-lista {
+            max-width: 800px;
+            margin: 3rem auto;
+        }
+
+        .comentario-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .comentario-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+        }
+
+        .comentario-nombre {
+            font-weight: bold;
+            color: #4a7c2c;
+        }
+
+        .comentario-fecha {
+            color: #888;
+            font-size: 0.9rem;
+        }
+
+        footer {
+            background-color: #2d5016;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div>
+                <div class="logo">🍀 SATURO</div>
+                <div class="tagline">Donde el alma respira</div>
+            </div>
+            <ul>
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#quienes-somos">Quiénes Somos</a></li>
+                <li><a href="#planes">Planes</a></li>
+                <li><a href="#valores">Valores</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+                <li><a href="#comentarios">Comentarios</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero" id="inicio">
+        <div class="hero-content">
+            <div>
+                <h1>SATURO</h1>
+                <p>Donde el alma respira</p>
+                <p style="font-size: 1.2rem; font-style: normal; margin-bottom: 2rem;">
+                    Desconéctate del ruido. Reconéctate contigo.
+                </p>
+                <a href="#planes" class="cta-button">Descubre Nuestras Experiencias</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="quienes-somos">
+        <h2>Quiénes Somos</h2>
+        <div class="about-content">
+            <div class="about-text">
+                <p>En SATURO ofrecemos experiencias de descanso, reconexión y bienestar en un entorno natural, sostenible y auténtico. Más que un lugar de descanso, aquí vienes a renacer.</p>
+                <p style="margin-top: 1.5rem;">Somos una propuesta de recreación al aire libre que busca recuperar la calma y la conexión con la naturaleza a través de experiencias sostenibles, íntimas y orientadas al bienestar integral.</p>
+                <p style="margin-top: 1.5rem;">SATURO fusiona prácticas de salud emocional con ecoturismo responsable, pensado para quienes desean desconectarse del ruido urbano y renovarse en un espacio privado que respeta el equilibrio entre el ser humano y el medioambiente.</p>
+            </div>
+            <div class="mission-vision">
+                <h3>🌱 Nuestra Misión</h3>
+                <p>Ofrecer experiencias transformadoras de bienestar y reconexión con la naturaleza a través de actividades ecológicas, sostenibles y conscientes, promoviendo salud mental y equilibrio espiritual en un entorno natural y seguro.</p>
+                
+                <h3 style="margin-top: 2rem;">🌿 Nuestra Visión</h3>
+                <p>Ser el destino líder en Colombia para el descanso consciente, reconocido por nuestro impacto positivo en la salud emocional, el medioambiente y la comunidad local para el año 2030.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="planes" class="planes">
+        <h2>Nuestras Experiencias</h2>
+        <div class="planes-grid">
+            <div class="plan-card">
+                <h3>🧘 Plan Anti-Estrés</h3>
+                <p style="margin-bottom: 1.5rem; color: #666; font-style: italic;">Bienestar y calma</p>
+                <ul>
+                    <li>Yoga al aire libre y meditación guiada</li>
+                    <li>Caminata consciente con ejercicios de respiración</li>
+                    <li>Charla práctica de manejo del estrés</li>
+                    <li>Almuerzo orgánico y tiempo de descanso</li>
+                </ul>
+            </div>
+            
+            <div class="plan-card">
+                <h3>💑 Plan Parejas</h3>
+                <p style="margin-bottom: 1.5rem; color: #666; font-style: italic;">Reconexión auténtica</p>
+                <ul>
+                    <li>Baño de bosque y meditación en pareja</li>
+                    <li>Taller de biodanza o yoga en dúo</li>
+                    <li>Cena romántica orgánica con velas</li>
+                    <li>Noche de fogata con música acústica</li>
+                    <li>Camping en la tranquilidad de la noche</li>
+                </ul>
+                <p style="margin-top: 1rem; font-style: italic; color: #4a7c2c;">Una experiencia íntima en medio de la naturaleza</p>
+            </div>
+            
+            <div class="plan-card">
+                <h3>👨‍👩‍👧‍👦 Plan Familiar</h3>
+                <p style="margin-bottom: 1.5rem; color: #666; font-style: italic;">Naturaleza para todos</p>
+                <ul>
+                    <li>Huerta interactiva: siembra y cosecha</li>
+                    <li>Caminata lúdica con juegos en la naturaleza</li>
+                    <li>Taller de artesanías naturales para niños</li>
+                    <li>Almuerzo campestre saludable</li>
+                </ul>
+                <p style="margin-top: 1rem; font-style: italic; color: #4a7c2c;">Perfecto para pasar tiempo de calidad en familia</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="valores">
+        <h2>Nuestros Valores</h2>
+        <div class="valores-grid">
+            <div class="valor-card">
+                <div class="valor-icon">💚</div>
+                <h3>Autenticidad</h3>
+                <p>Ofrecemos experiencias genuinas, sin poses comerciales o masivas. Lo que vives aquí nace del corazón y del territorio.</p>
+            </div>
+            
+            <div class="valor-card">
+                <div class="valor-icon">🌱</div>
+                <h3>Bienestar Integral</h3>
+                <p>Promovemos la armonía entre cuerpo, mente y espíritu, priorizando la salud física, emocional y mental de nuestros visitantes.</p>
+            </div>
+            
+            <div class="valor-card">
+                <div class="valor-icon">♻️</div>
+                <h3>Sostenibilidad</h3>
+                <p>Compromiso con el uso responsable de los recursos naturales y el cuidado del medioambiente en cada espacio.</p>
+            </div>
+            
+            <div class="valor-card">
+                <div class="valor-icon">🤝</div>
+                <h3>Empatía</h3>
+                <p>Escuchamos con atención, actuamos con sensibilidad y entendemos las emociones y necesidades de los demás.</p>
+            </div>
+            
+            <div class="valor-card">
+                <div class="valor-icon">🌟</div>
+                <h3>Crecimiento Personal</h3>
+                <p>Más que un lugar de descanso, SATURO es una oportunidad para descubrir nuevas formas de vivir, pensar y sentir.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="diferenciadores" class="diferenciadores">
+        <h2>Lo Que Nos Hace Únicos</h2>
+        <div class="diferenciadores-list">
+            <div class="diferenciador-item">
+                <h4>1. Propiedad Natural Privada</h4>
+                <p>Sin sobrecarga turística, garantizamos experiencias íntimas y auténticas en un entorno exclusivo.</p>
+            </div>
+            
+            <div class="diferenciador-item">
+                <h4>2. Acompañamiento Integral</h4>
+                <p>Incluimos acompañamiento médico y psicológico básico para tu seguridad y bienestar emocional.</p>
+            </div>
+            
+            <div class="diferenciador-item">
+                <h4>3. Enfoque Holístico</h4>
+                <p>Integramos cuerpo, mente y espíritu en cada experiencia, para un equilibrio verdadero.</p>
+            </div>
+            
+            <div class="diferenciador-item">
+                <h4>4. Sostenibilidad Aplicada</h4>
+                <p>Energía solar, baños secos, alimentación natural y huerta orgánica en funcionamiento real.</p>
+            </div>
+            
+            <div class="diferenciador-item">
+                <h4>5. Experiencias Cercanas</h4>
+                <p>Relación directa con el fundador y atención personalizada que hace la diferencia.</p>
+            </div>
+        </div>
+        
+        <div style="margin-top: 3rem; text-align: center; background: white; padding: 2rem; border-radius: 15px;">
+            <h3 style="color: #2d5016; margin-bottom: 1rem;">💰 Descuentos Especiales</h3>
+            <p style="font-size: 1.1rem; line-height: 1.8;">
+                <strong>10%</strong> por reserva anticipada<br>
+                <strong>15%</strong> para grupos de más de 4 personas<br>
+                <strong>20%</strong> para estudiantes universitarios o trabajadores del sector salud/educación<br>
+                <em>Además bonificaciones por referidos</em>
+            </p>
+        </div>
+    </section>
+
+    <section id="contacto" class="contacto">
+        <h2>Conéctate con Nosotros</h2>
+        <p style="font-size: 1.2rem; margin-bottom: 2rem;">Escanea los códigos QR para seguirnos en nuestras redes sociales</p>
+        
+        <div class="qr-container">
+            <div class="qr-item">
+                <h3>Sitio Web</h3>
+                <div class="qr-code">
+                    <svg width="180" height="180" viewBox="0 0 180 180">
+                        <rect width="180" height="180" fill="white"/>
+                        <text x="90" y="90" text-anchor="middle" dominant-baseline="middle" font-size="16" fill="#2d5016">
+                            SATURO
+                        </text>
+                        <rect x="10" y="10" width="30" height="30" fill="#2d5016"/>
+                        <rect x="140" y="10" width="30" height="30" fill="#2d5016"/>
+                        <rect x="10" y="140" width="30" height="30" fill="#2d5016"/>
+                        <rect x="50" y="50" width="20" height="20" fill="#2d5016"/>
+                        <rect x="110" y="50" width="20" height="20" fill="#2d5016"/>
+                        <rect x="50" y="110" width="20" height="20" fill="#2d5016"/>
+                        <rect x="110" y="110" width="20" height="20" fill="#2d5016"/>
+                    </svg>
+                </div>
+                <a href="https://www.google.com" target="_blank" style="color: #2d5016; font-weight: bold; text-decoration: none; padding: 0.5rem 1rem; background: #f0ad4e; border-radius: 5px; display: inline-block; margin-top: 0.5rem;">Visitar Sitio Web</a>
+            </div>
+            
+            <div class="qr-item">
+                <h3>Más Información</h3>
+                <div class="qr-code">
+                    <svg width="180" height="180" viewBox="0 0 180 180">
+                        <rect width="180" height="180" fill="white"/>
+                        <text x="90" y="90" text-anchor="middle" dominant-baseline="middle" font-size="14" fill="#2d5016">
+                            Reconecta
+                        </text>
+                        <rect x="10" y="10" width="30" height="30" fill="#2d5016"/>
+                        <rect x="
